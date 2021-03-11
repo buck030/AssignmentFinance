@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <form action="/history" method="get">
+        <!--- Shows the user his stock history --->
+       <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Bought</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Number of shares</th>
+              <th scope="col">Price</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for row in buyrows %}
+               <!--- generates red table row for each buy --->
+              <tr class="table-danger">
+                <td> </td>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["nr_of_shares"] }}</td>
+                <td>{{ row["price"] }}</td>
+                <td>{{ row["time"] }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Sold</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Number of shares</th>
+              <th scope="col">Price</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+            <tbody>
+              {% for row in sellrows %}
+              <!--- generates green table row for each sell --->
+              <tr class="table-success">
+                <td> </td>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["nr_of_shares"] }}</td>
+                <td>{{ row["price"] }}</td>
+                <td>{{ row["time"] }}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+    </form>
+{% endblock %}

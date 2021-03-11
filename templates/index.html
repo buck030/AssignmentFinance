@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <form action="/index" method="get">
+        <!--- Shows the user his stocks and cash level --->
+       <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Stock</th>
+              <th scope="col">Number of shares</th>
+              <th scope="col">Price</th>
+              <th scope="col">Total worth</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for row in rows %}
+            <tr>
+              <td>{{ row["symbol"] }}</td>
+              <td>{{ row["nr_of_shares"] }}</td>
+              <td>{{ row["price"] }}</td>
+              <td>{{ row["total_price"] }}</td>
+            </tr>
+              {% endfor %}
+            <tr>
+              <td>Cash</td>
+              <td> </td>
+              <td> </td>
+              <td>{{ amount }}</td>
+            </tr>
+          </tbody>
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Total wallet</th>
+              <th></th>
+              <th></th>
+              <th scope="col">{{ som }}</th>
+            </tr>
+          </thead>
+        </table>
+    </form>
+{% endblock %}
